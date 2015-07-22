@@ -16,8 +16,8 @@ file_size = line_count * line_size = 1 456 806 250 000 bytes
 -------------------
 Партиционировать предлагаю помесячно.
 Таблица должна содержать два поля:
-  user_id INT
-  timestamp INT
++ user_id INT
++ timestamp INT
 Если использовать MySQL, то примерный скрипт создания таблицы выглядит следующим образом:
 ```
  CREATE TABLE log (
