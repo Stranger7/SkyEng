@@ -25,13 +25,13 @@ file_size = line_count * line_size = 1 456 806 250 000 bytes
      `user_id` INT UNSIGNED,
      `timestamp` INT UNSIGNED,
  ) ENGINE = MYISAM
- PARTITION BY RANGE (timestamp) (
+ PARTITION BY RANGE (`timestamp`) (
      PARTITION p_2010_01 VALUES LESS THAN(unix-timestamp для 2010/01/01 00:00:00),
      PARTITION p_2010_02 VALUES LESS THAN(unix-timestamp для 2010/02/01 00:00:00),
      ...
      PARTITION p_2015_07 VALUES LESS THAN(MAXVALUE)
  );
- CREATE INDEX idx1 ON log (user_id, timestamp);
+ CREATE INDEX idx1 ON log (`user_id`, `timestamp`);
 ```
 *_Примечание:_* Вычислить unix-timestamp можно с помощью функции mktime
 
@@ -80,7 +80,7 @@ $range_count = (int) ceil(($max_user_id - $min_user_id) / $step);
 for ($i = 0; $i < $range_count; $i++)
 {
    $curr_min_user_id = $min_user_id + $i$step;
-   $curr_max_user_id = $min_user_id + ($i + 1)$step - 1;
+   $curr_max_user_id = $min_user_id + ($i + 1) * $step - 1;
    $sql = "SELECT * FROM log "
         . "WHERE user_id BETWEEN $curr_min_user_id AND $curr_max_user_id "
         . "ORDER BY user_id, timestamp"
