@@ -25,7 +25,7 @@ file_size = line_count * line_size = 1 456 806 250 000 bytes
      `user_id` INT UNSIGNED,
      `timestamp` INT UNSIGNED,
  ) ENGINE = MYISAM
- PARTITION BY RANGE (ts) (
+ PARTITION BY RANGE (timestamp) (
      PARTITION p_2010_01 VALUES LESS THAN(unix-timestamp для 2010/01/01 00:00:00),
      PARTITION p_2010_02 VALUES LESS THAN(unix-timestamp для 2010/02/01 00:00:00),
      ...
