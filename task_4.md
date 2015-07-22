@@ -79,7 +79,7 @@ $step = 50000;
 $range_count = (int) ceil(($max_user_id - $min_user_id) / $step);
 for ($i = 0; $i < $range_count; $i++)
 {
-   $curr_min_user_id = $min_user_id + $i$step;
+   $curr_min_user_id = $min_user_id + $i * $step;
    $curr_max_user_id = $min_user_id + ($i + 1) * $step - 1;
    $sql = "SELECT * FROM log "
         . "WHERE user_id BETWEEN $curr_min_user_id AND $curr_max_user_id "
