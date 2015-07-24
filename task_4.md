@@ -20,7 +20,7 @@ file_size = line_count * line_size = 1 456 806 250 000 bytes
 + timestamp INT
 
 Если использовать MySQL, то примерный скрипт создания таблицы выглядит следующим образом:
-```
+```sql
  CREATE TABLE log (
      `user_id` INT UNSIGNED,
      `timestamp` INT UNSIGNED,
@@ -70,7 +70,7 @@ while (($buffer = fgets($source)) !== false)
 (весь результат выборки не должен превышать размер кеша).
 
 Алгоритм выгрузки выглядит следующим образом:
-```
+```php
 $min_user_id = $db->query('SELECT MIN(user_id) AS min_user_id')->run()->row()->min_user_id;
 $max_user_id = $db->query('SELECT MAX(user_id) AS max_user_id')->run()->row()->max_user_id;
 // Выборку делать для диапазона, например, в 50 тысяч.
